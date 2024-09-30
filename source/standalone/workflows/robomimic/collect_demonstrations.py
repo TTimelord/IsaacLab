@@ -86,7 +86,7 @@ def main():
     if args_cli.teleop_device.lower() == "keyboard":
         teleop_interface = Se3Keyboard(pos_sensitivity=0.09, rot_sensitivity=0.3)
     elif args_cli.teleop_device.lower() == "spacemouse":
-        teleop_interface = Se3SpaceMouse(pos_sensitivity=0.05, rot_sensitivity=0.005)
+        teleop_interface = Se3SpaceMouse(pos_sensitivity=0.15, rot_sensitivity=0.005)
     else:
         raise ValueError(f"Invalid device interface '{args_cli.teleop_device}'. Supported: 'keyboard', 'spacemouse'.")
     # add teleoperation key for env reset
@@ -133,6 +133,8 @@ def main():
             # -- obs
             for key, value in obs_dict["policy"].items():
                 collector_interface.add(f"obs/{key}", value)
+                print(key+":", value)
+            print("="*20)
             # -- actions
             collector_interface.add("actions", actions)
 
