@@ -45,6 +45,18 @@ def robot_ee_position_in_robot_root_frame(
     )
     return robot_ee_to_base
 
+def robot_ee_velocity_in_robot_root_frame(
+    env: ManagerBasedRLEnv,
+    robot_cfg: SceneEntityCfg = SceneEntityCfg("robot"),
+    ee_frame_cfg: SceneEntityCfg = SceneEntityCfg("ee_frame"),
+) -> torch.Tensor:
+    """The position of the object in the robot's root frame."""
+    robot: Articulation = env.scene[robot_cfg.name]
+    ids, names = robot.find_bodies(["panda_hand"])
+    ee_lin_vel_w = robot.data.body_state_w[:, ids[0], 6:9]
+
+    return ee_lin_vel_w
+
 # def robot_ee_position_in_robot_root_frame(
 #     env: ManagerBasedRLEnv,
 #     robot_cfg: SceneEntityCfg = SceneEntityCfg("robot"),
