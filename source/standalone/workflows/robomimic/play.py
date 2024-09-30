@@ -47,6 +47,7 @@ def main():
     # we want to have the terms in the observations returned as a dictionary
     # rather than a concatenated tensor
     env_cfg.observations.policy.concatenate_terms = False
+    env_cfg.commands.object_pose.resampling_time_range = (8.0,8.0)
 
     # create environment
     env = gym.make(args_cli.task, cfg=env_cfg)

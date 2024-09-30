@@ -84,7 +84,7 @@ def main():
 
     # create controller
     if args_cli.teleop_device.lower() == "keyboard":
-        teleop_interface = Se3Keyboard(pos_sensitivity=0.04, rot_sensitivity=0.08)
+        teleop_interface = Se3Keyboard(pos_sensitivity=0.09, rot_sensitivity=0.3)
     elif args_cli.teleop_device.lower() == "spacemouse":
         teleop_interface = Se3SpaceMouse(pos_sensitivity=0.05, rot_sensitivity=0.005)
     else:
